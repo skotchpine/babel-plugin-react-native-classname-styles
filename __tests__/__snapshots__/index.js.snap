@@ -12,7 +12,7 @@ var Styles = {
 var X = function X(_ref) {
   var name = _ref.name;
   return /*#__PURE__*/React.createElement(Text, {
-    style: [Styles.h1]
+    style: [Styles[\\"h1\\"]]
   }, \\"name\\");
 };"
 `;
