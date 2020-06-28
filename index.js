@@ -1,4 +1,4 @@
-const transform = ({types: t}) => {
+module.exports = function transform({types: t}) {
   var classNamePath = null
   var stylePath = null
 
@@ -6,13 +6,15 @@ const transform = ({types: t}) => {
     name: 'react-native-classname-styles',
     visitor: {
       JSXOpeningElement: {
-        exit(path, state) => {
+        exit(path, state) {
           if (classNamePath) {
-            if (!path.scope.hasOwnBinding("Styles")) {
+            if (!path.scope.hasBinding("Styles")) {
               throw classNamePath.buildCodeFrameError("className attributes are added to the style attribute using Styles, but Styles is undefined.")
             }
-            const styleNames = classNamePath.node.value.split(/[ ]+/)
-            const newStyles = styleNames.map(styleName => t.binaryExpression('.', t.identifier("Styles"), t.identifier(styleName)))
+            const styleNames = classNamePath.node.value.value.split(/[ ]+/)
+            const newStyles = styleNames.map(function (styleName) {
+              return t.memberExpression(t.identifier("Styles"), t.identifier(styleName))
+            })
 
             if (stylePath) {
               const styleValue = stylePath.node.value
@@ -43,7 +45,7 @@ const transform = ({types: t}) => {
         }
       },
 
-      JSXAttribute: JSXAttribute(path, state) => {
+      JSXAttribute: function JSXAttribute(path, state) {
         const name = path.node.name.name;
         if (name === 'className') classNamePath = path
         if (name === 'style') stylePath = path
@@ -51,5 +53,3 @@ const transform = ({types: t}) => {
     },
   }
 }
-
-export default transform
