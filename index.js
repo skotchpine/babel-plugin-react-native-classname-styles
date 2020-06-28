@@ -13,7 +13,9 @@ module.exports = function transform({types: t}) {
             }
             const styleNames = classNamePath.node.value.value.split(/[ ]+/)
             const newStyles = styleNames.map(function (styleName) {
-              return t.memberExpression(t.identifier("Styles"), t.identifier(styleName))
+              const expression = t.memberExpression(t.identifier("Styles"), t.identifier(styleName))
+              expression.computed = true
+              return expression
             })
 
             if (stylePath) {
