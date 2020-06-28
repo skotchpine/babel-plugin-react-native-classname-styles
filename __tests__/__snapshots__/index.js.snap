@@ -16,3 +16,47 @@ var X = function X(_ref) {
   }, \\"name\\");
 };"
 `;
+
+exports[`injects styles from classNames 2`] = `
+"\\"use strict\\";
+
+var Styles = {
+  h1: {
+    fontSize: 32
+  }
+};
+
+var X = function X(_ref) {
+  var name = _ref.name;
+  return /*#__PURE__*/React.createElement(Text, {
+    style: [Styles[\\"h1\\"], {
+      fontSize: 42
+    }]
+  }, \\"name\\");
+};"
+`;
+
+exports[`injects styles from classNames 3`] = `
+"\\"use strict\\";
+
+var Styles = {
+  h1: {
+    fontSize: 32
+  },
+  h2: {
+    fontSize: 24
+  },
+  'flex-1': {
+    flex: 1
+  }
+};
+
+var X = function X(_ref) {
+  var name = _ref.name;
+  return /*#__PURE__*/React.createElement(Text, {
+    style: [Styles[\\"h1\\"], Styles[\\"h2\\"], Styles[\\"flex-1\\"], {
+      fontSize: 42
+    }]
+  }, \\"name\\");
+};"
+`;
