@@ -13,7 +13,7 @@ module.exports = function transform({types: t}) {
             }
             const styleNames = classNamePath.node.value.value.split(/[ ]+/)
             const newStyles = styleNames.map(function (styleName) {
-              const expression = t.memberExpression(t.identifier("Styles"), t.identifier(styleName))
+              const expression = t.memberExpression(t.identifier("Styles"), t.stringLiteral(styleName))
               expression.computed = true
               return expression
             })
