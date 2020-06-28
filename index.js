@@ -3,7 +3,7 @@ module.exports = function transform({types: t}) {
   var stylePath = null
 
   return {
-    name: 'react-native-classname-styles',
+    name: 'babel-plugin-react-native-classname-styles',
     visitor: {
       JSXOpeningElement: {
         exit(path, state) {
