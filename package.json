@@ -1,6 +1,6 @@
 {
   "name": "@skotchpine/babel-plugin-react-native-classname-styles",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "index.js",
   "author": "tyler@techlitafrica.org",

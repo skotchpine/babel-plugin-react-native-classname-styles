@@ -8,9 +8,6 @@ module.exports = function transform({types: t}) {
       JSXOpeningElement: {
         exit(path, state) {
           if (classNamePath) {
-            if (!path.scope.hasBinding("Styles")) {
-              throw classNamePath.buildCodeFrameError("className attributes are added to the style attribute using Styles, but Styles is undefined.")
-            }
             const styleNames = classNamePath.node.value.value.split(/[ ]+/)
             const newStyles = styleNames.map(function (styleName) {
               return t.memberExpression(t.identifier("Styles"), t.stringLiteral(styleName), true)
